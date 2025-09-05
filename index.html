@@ -1,126 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Price Prediction</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center; 
-            align-items: center;     
-            min-height: 100vh;           
-            margin: 0;
-            font-size: 18px;            
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(to right, #ece9e6, #ffffff);
-        }
-
-        form {
-            background-color: #ffffff;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            width: 500px;
-        }
-
-        h2 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin: 15px 0 10px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        input[type="radio"] {
-            margin-left: 10px;
-            margin-right: 5px;
-        }
-
-        fieldset {
-            border: none;         
-            padding: 10px 0;           
-            margin: 0;  
-        }
-
-        input[type="submit"],
-        input[type="reset"] {
-            background-color: #3498db;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 10px 10px 0 0;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="reset"] {
-            background-color: #e74c3c;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #2980b9;
-        }
-
-        input[type="reset"]:hover {
-            background-color: #c0392b;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        b {
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Price Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+    }
+    .btn-custom {
+      background-color: #667eea;
+      color: white;
+      font-weight: bold;
+    }
+    .btn-custom:hover {
+      background-color: #5a67d8;
+      color: white;
+    }
+  </style>
 </head>
-
 <body>
-   <form action="/predict" method="post">
-  <h2> Used Car Price Calculator</h2>
-
-  <p>Car Brand*: <input type="text" name="brand" required></p>
-  <p>Model*: <input type="text" name="model" required></p>
-  <p>Year*: <input type="number" name="year" min="1900" max="2025" required></p>
-  
-  <p>Transmission*:
-    <label><input type="radio" name="transmission" value="Manual" required> Manual</label>
-    <label><input type="radio" name="transmission" value="Automatic"> Automatic</label>
-  </p>
-
-  <p>Fuel Type*:
-    <label><input type="radio" name="fuel_type" value="Petrol" required> Petrol</label>
-    <label><input type="radio" name="fuel_type" value="Diesel"> Diesel</label>
-    <label><input type="radio" name="fuel_type" value="Hybrid"> Hybrid</label>
-    <label><input type="radio" name="fuel_type" value="Electric"> Electric</label>
-  </p>
-
-  <p>Engine Size (cc)*: <input type="number" name="engine" required></p>
-
-  <p>
-    <input type="reset" value="Reset">
-    <input type="submit" value="Predict Price">
-  </p>
-</form>
-
-    <body style="background-image: url(image\ copy.png);"body>
-
-    
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h2 class="text-center mb-4">🚗 Car Price Prediction</h2>
+          <form action="/predict" method="POST">
+            <div class="mb-3">
+              <label class="form-label">Brand</label>
+              <input type="text" class="form-control" name="brand" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Model</label>
+              <input type="text" class="form-control" name="model" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Year</label>
+              <input type="number" class="form-control" name="year" min="1990" max="2025" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Engine (CC)</label>
+              <input type="number" class="form-control" name="engine" min="600" max="6000" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Transmission</label>
+              <select class="form-select" name="transmission" required>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Fuel Type</label>
+              <select class="form-select" name="fuel_type" required>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="CNG">CNG</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Predict Price</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
